@@ -29,7 +29,7 @@
   },
   {
     "ParameterKey": "ToolsAccountPrincipalARN",
-    "ParameterValue": "arn:aws:iam::806186014049:root"
+    "ParameterValue": "arn:aws:iam::*************:root"
   },
   {
     "ParameterKey": "AppDNSName",
@@ -37,7 +37,7 @@
   },
   {
     "ParameterKey": "AppDNSDelegationRole",
-    "ParameterValue": "arn:aws:iam::806186014049:root"
+    "ParameterValue": "arn:aws:iam::**************:root"
   },
   {
     "ParameterKey": "Aliases",
@@ -56,3 +56,4 @@
     "ParameterValue": ""
   }
 ]
+
