@@ -1,0 +1,5 @@
+[
+  { "ParameterKey": "App", "ParameterValue": "api-on-aws" },
+  { "ParameterKey": "Env", "ParameterValue": "test" },
+  { "ParameterKey": "Name", "ParameterValue": "api-server" }
+]

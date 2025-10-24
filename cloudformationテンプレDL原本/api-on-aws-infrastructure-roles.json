@@ -1,0 +1,18 @@
+[
+  {
+    "ParameterKey": "AdminRoleName",
+    "ParameterValue": "APIonAWSAdminRole"
+  },
+  {
+    "ParameterKey": "ExecutionRoleName",
+    "ParameterValue": "APIonAWSExecutionRole"
+  },
+  {
+    "ParameterKey": "DelegatedAccountId",
+    "ParameterValue": "806186014049"
+  },
+  {
+    "ParameterKey": "AppName",
+    "ParameterValue": "api-on-aws"
+  }
+]
