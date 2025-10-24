@@ -14,10 +14,11 @@
   { "ParameterKey": "AddonsTemplateURL", "ParameterValue": "" },
   { "ParameterKey": "EnvFileARN", "ParameterValue": "" },
   { "ParameterKey": "ArtifactKeyARN",
-  "ParameterValue": "arn:aws:kms:ap-northeast-1:806186014049:key/10a73941-8f9e-4a99-909d-a10a593200ba" 
+  "ParameterValue": "arn:aws:kms:ap-northeast-1:**********:key/10a73941-8f9e-4a99-909d-a10a593200ba" 
   },
   { "ParameterKey": "TargetContainer", "ParameterValue": "api-container" },
   { "ParameterKey": "TargetPort", "ParameterValue": "80" },
   { "ParameterKey": "HTTPSEnabled", "ParameterValue": "false" },
   { "ParameterKey": "RulePath", "ParameterValue": "/" }
 ]
+
