@@ -9,10 +9,11 @@
   },
   {
     "ParameterKey": "DelegatedAccountId",
-    "ParameterValue": "806186014049"
+    "ParameterValue": "*****************"
   },
   {
     "ParameterKey": "AppName",
     "ParameterValue": "api-on-aws"
   }
 ]
+
