@@ -62,7 +62,11 @@ Revise **CloudFormation Templates** created by **Copilot** and re-deploy them. M
 - System Architecture Diagram is below  
   <img src="./API%20Server%20on%20AWS.jpg" alt="System Architecture Diagram" width="600" />
 
-CloudFormation:
+[This project](https://github.com/HideTake761/Terraform/tree/main/AWS%20ECS) adds **AWS Budgets** to this project's infrastructure and provisions it with **Terraform**.  
+
+<br>  
+  
+CloudFormation:  
 - Deployment Order of CloudFormation Templates Created by Copilot:
  1. Stack name: `<application-name>-infrastructure-roles`  
 Includes IAM roles such as Lambda execution roles and EC2 instance profiles.  
@@ -100,11 +104,3 @@ CI/CD Pipeline (via GitHub Actions):
 
 - Please see the below for more detail.<br>
 https://github.com/HideTake761/CI-CD-Django-REST-API-with-Docker-on-AWS-ECS-Fargate/blob/main/.github/workflows/docker-build.yaml 
-
-
-
-
-
-
-
-
