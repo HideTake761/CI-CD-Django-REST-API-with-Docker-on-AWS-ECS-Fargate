@@ -70,7 +70,8 @@ Revise **CloudFormation Templates** created by **Copilot** and re-deploy them. M
   
 <br>
 CloudFormation:  
-- Deployment Order of CloudFormation Templates Created by Copilot:
+- Deployment Order of CloudFormation Templates Created by Copilot:  
+
  1. Stack name: `<application-name>-infrastructure-roles`  
 Includes IAM roles such as Lambda execution roles and EC2 instance profiles.  
 Requires `CAPABILITY_NAMED_IAM`.
@@ -107,5 +108,6 @@ CI/CD Pipeline (via GitHub Actions):
 
 - Please see the below for more detail.<br>
 https://github.com/HideTake761/CI-CD-Django-REST-API-with-Docker-on-AWS-ECS-Fargate/blob/main/.github/workflows/docker-build.yaml 
+
 
 
