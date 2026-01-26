@@ -4,4 +4,6 @@ django-filter==25.1
 djangorestframework==3.16.1
 sqlparse==0.5.3
 json-log-formatter==1.1.1
+gunicorn==21.2.0
+psycopg[binary]==3.2.1
 coverage==7.10.6
