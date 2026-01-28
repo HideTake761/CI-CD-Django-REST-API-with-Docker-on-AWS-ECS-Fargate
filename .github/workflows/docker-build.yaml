@@ -32,6 +32,7 @@ jobs:
       - name: Run Django tests
         env:
           DJANGO_SETTINGS_MODULE: api_server.settings
+          SECRET_KEY: dummy-secret-for-ci
         run: |
           python manage.py test
   
@@ -45,42 +46,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: | 
-            ${{ secrets.DOCKERHUB_USERNAME }}/django-rest-framework:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/django-rest-framework:${{ github.sha }}
-
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-  
-  deploy-to-ecs:
-    needs: build-and-push
-    runs-on: ubuntu-latest
-    if: success()
-
-    env:
-      AWS_REGION: ${{ secrets.AWS_REGION }}
-      SERVICE_NAME: api-server         # >copilot svc ls
-      ENV_NAME: test                 # >copilot env ls
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v3
         with:
@@ -88,14 +53,33 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Install AWS Copilot CLI
-        run: |
-          COPILOT_VERSION="v1.34.1"
-          curl -Lo copilot-cli https://github.com/aws/copilot-cli/releases/latest/download/copilot-linux
-          chmod +x copilot-cli
-          sudo mv copilot-cli /usr/local/bin/copilot
+      - uses: aws-actions/amazon-ecr-login@v2
 
-      - name: Deploy to ECS using Copilot
-        run: |
-          copilot deploy --name $SERVICE_NAME --env $ENV_NAME
+      - uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/portfolio-api:latest
+            ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/portfolio-api:${{ github.sha }}
+          # latestタグはECSの強制再デプロイ用に使用。
+          # 併せてgithub.shaをタグとして付与することで、どのコミットのイメージかを追跡・ロールバック可能にする。
 
+      - name: Deploy to ECS (force new deployment)
+        run: |
+          aws ecs update-service \
+            --cluster portfolio-ecs-cluster \
+            --service portfolio-service \
+            --force-new-deployment
+
+          aws ecs wait services-stable \
+            --cluster portfolio-ecs-cluster \
+            --services portfolio-service
+        # aws ecs update-service:AWS CLIでECSサービスを更新するコマンド
+        # cluster portfolio-ecs-cluster:Terraformで作ったECS Cluster名
+        # service portfolio-service:Terraformで作ったECS Service名
+        # --force-new-deployment:ECSサービスに、強制的に新しいデプロイを走らせ
+        # latestイメージを再取得。
+        # aws ecs wait services-stable:デプロイ完了を待つ。
+        # タスク起動失敗時にCI/CDを失敗として検知するために使用。
+                       
