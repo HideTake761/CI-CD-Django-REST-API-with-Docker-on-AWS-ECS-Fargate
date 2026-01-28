@@ -5,5 +5,5 @@ djangorestframework==3.16.1
 sqlparse==0.5.3
 json-log-formatter==1.1.1
 gunicorn==21.2.0
-psycopg[binary]==3.2.1
+psycopg[binary]==3.2.13
 coverage==7.10.6
