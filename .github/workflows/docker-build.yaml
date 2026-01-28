@@ -33,6 +33,7 @@ jobs:
         env:
           DJANGO_SETTINGS_MODULE: api_server.settings
           SECRET_KEY: dummy-secret-for-ci
+          GITHUB_ACTIONS: "true"
         run: |
           python manage.py test
   
