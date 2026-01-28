@@ -64,7 +64,7 @@ jobs:
             ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY_NAME }}:latest
             ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY_NAME }}:${{ github.sha }}
           # latestタグはECSの強制再デプロイ用に使用。
-          # 併せてgithub.shaをタグとして付与することで、どのコミットのイメージかを追跡・ロールバック可能にする。
+          # 併せてgithub.shaをタグとして付与することで、どのコミットのイメージかを追跡・ロールバックが可能に。
 
       - name: Deploy to ECS (force new deployment)
         run: |
