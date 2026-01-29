@@ -89,7 +89,6 @@ REST_FRAMEWORK = {
         'django_filters.rest_framework.DjangoFilterBackend',
         # views.pyにもDjangoFilterBackendの設定必要
     ],
-
 }
 
 WSGI_APPLICATION = "api_server.wsgi.application"
