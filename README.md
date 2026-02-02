@@ -34,18 +34,11 @@ Logging:
   - Django: INFO
   - myapi.middleware: DEBUG
 
-Setting Up Volume Mounts from Windows 11 to a Docker Container(in Windows PC):
-
->docker run -it -p 8000:8000 -v C:\Users\HideTake761\Django\api_server:/app --name api_server python:3.13-slim bash
 <br>
 Unit Test: 
 https://github.com/HideTake761/CI-CD-Django-REST-API-with-Docker-on-AWS-ECS-Fargate/blob/main/myapi/tests.py
   
-Current test coverage measured by **coverage.py** is **98%**.
 <br>
-<br>
-REST API Request Test:<br>
-Please see https://github.com/HideTake761/CI-CD-Django-REST-API-with-Docker-on-AWS-ECS-Fargate/blob/main/REST_API_TEST.md
 <br>
 <br>
   
@@ -61,9 +54,6 @@ AWS:
 Revise **CloudFormation Templates** created by **Copilot** and re-deploy them. Manage **infrastructure as code** 
 - System Architecture Diagram is below  
   <img src="./API%20Server%20on%20AWS.jpg" alt="System Architecture Diagram" width="600" />
-<a href="https://www.credly.com/badges/ae2d13dc-3b14-491e-a44a-e47cdbe94b85/public_url">
-  <img src="https://images.credly.com/size/220x220/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png" width="150" alt="AWS SAA Badge">
-</a>
 
 [This project](https://github.com/HideTake761/Terraform/tree/main/AWS_ECS) adds **AWS Budgets** to this project's infrastructure and provisions it with **Terraform**.  
 
@@ -108,6 +98,7 @@ CI/CD Pipeline (via GitHub Actions):
 
 - Please see the below for more detail.<br>
 https://github.com/HideTake761/CI-CD-Django-REST-API-with-Docker-on-AWS-ECS-Fargate/blob/main/.github/workflows/docker-build.yaml 
+
 
 
 
