@@ -53,7 +53,7 @@ AWS:
 - IaC: CloudFormation  
 Revise **CloudFormation Templates** created by **Copilot** and re-deploy them. Manage **infrastructure as code** 
 - System Architecture Diagram is below  
-  <img src="./API%20Server%20on%20AWS.jpg" alt="System Architecture Diagram" width="600" />
+  <img src="./AWS ECS RDS.jpg" alt="System Architecture Diagram" width="600" />
 
 [This project](https://github.com/HideTake761/Terraform/tree/main/AWS_ECS) adds **AWS Budgets** to this project's infrastructure and provisions it with **Terraform**.  
 
@@ -98,6 +98,7 @@ CI/CD Pipeline (via GitHub Actions):
 
 - Please see the below for more detail.<br>
 https://github.com/HideTake761/CI-CD-Django-REST-API-with-Docker-on-AWS-ECS-Fargate/blob/main/.github/workflows/docker-build.yaml 
+
 
 
 
