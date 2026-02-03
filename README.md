@@ -12,7 +12,7 @@ Environment:
 - json-log-formatter 1.1.1, coverage 7.10.6  
 **Django REST Framework** was chosen based on existing experience with **Django**, enabling quicker development and easier long-term maintenance compared to adopting a new framework like **FastAPI**.
 - Web Server: WSGI with Gunicorn  
-This application provides only REST APIs and does not require WebSocket support or asynchronous processing. To keep the architecture simple and efficient, WSGI with Gunicorn was chosen instead of an ASGI-based setup.
+This application provides only REST APIs and does not require WebSocket support or asynchronous processing. To keep the architecture simple and efficient, **WSGI with Gunicorn** was chosen instead of an **ASGI**-based setup.
 - Database: PostgreSQL(deploy), SQLite(tests)  
 - Utilities: sqlparse 0.5.3  
 The project initially used **SQLite**. However, when considering horizontal scaling on ECS, it became clear that write operations from multiple containers would trigger database locks, which is a critical limitation for a scalable architecture. To avoid this issue, the database was migrated to **Amazon RDS**.
@@ -79,6 +79,7 @@ CI/CD Pipeline (via GitHub Actions):
 - CD: If tests pass, it builds a Docker image and then deploys it to AWS ECS (Fargate)  
 - For more details, please refer to the below.<br>
 https://github.com/HideTake761/CI-CD-Django-REST-API-with-Docker-on-AWS-ECS-Fargate/blob/main/.github/workflows/docker-build.yaml 
+
 
 
 
