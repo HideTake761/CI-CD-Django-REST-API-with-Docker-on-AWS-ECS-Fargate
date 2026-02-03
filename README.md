@@ -2,7 +2,8 @@ Purpose & Usage Context:
 
 This API server provides functionality for storing and retrieving data from the front end.  
 Designed as a microservice, it can be scaled and deployed independently, minimizing any impact on the front end.  
-By developing with Docker and pushing the image to Docker Hub, any team member can verify the application in the same environment.
+The infrastructure — including ECS/Fargate, RDS, and the ALB — is provisioned first using Terraform. After that, GitHub Actions handles deploying the Django API server onto the AWS environment.  
+Early on, Copilot was used to quickly launch ECS/Fargate, and the generated CloudFormation was applied experimentally. Working through the resulting issues helped build a deeper understanding of AWS resource configurations.
 
 Environment:
 - Host OS: Windows 11 Home 25H2  
@@ -79,6 +80,7 @@ CI/CD Pipeline (via GitHub Actions):
 - CD: If tests pass, it builds a Docker image and then deploys it to AWS ECS (Fargate)  
 - For more details, please refer to the below.<br>
 https://github.com/HideTake761/CI-CD-Django-REST-API-with-Docker-on-AWS-ECS-Fargate/blob/main/.github/workflows/docker-build.yaml 
+
 
 
 
