@@ -44,7 +44,7 @@ https://github.com/HideTake761/CI-CD-Django-REST-API-with-Docker-on-AWS-ECS-Farg
 <br>
 <br>
   
-Starting the Django application on AWS ECS with RDS  
+Starting the Django application on AWS ECS with RDS:  
 1. Install the Session Manager Plugin on your local machine. (AWS Systems Manager Session Manager is required to connect to the ECS container.)
 2. Run the following command to execute the migration inside the ECS container.  
   
@@ -80,6 +80,7 @@ CI/CD Pipeline (via GitHub Actions):
 - CD: If tests pass, it builds a Docker image and then deploys it to AWS ECS (Fargate)  
 - For more details, please refer to the below.<br>
 https://github.com/HideTake761/CI-CD-Django-REST-API-with-Docker-on-AWS-ECS-Fargate/blob/main/.github/workflows/docker-build.yaml 
+
 
 
 
