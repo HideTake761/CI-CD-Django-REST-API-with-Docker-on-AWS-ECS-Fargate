@@ -61,20 +61,10 @@ Revise **CloudFormation Templates** created by **Copilot** and re-deploy them. M
 <br>  
   
 CI/CD Pipeline (via GitHub Actions):  
+  
 **GitHub Actions** was selected due to deep integration with the GitHub ecosystem. It can be configured through the GitHub UI and a YAML file which makes it much simpler to implement than alternatives like **Jenkins** or **CircleCI**.
 - Trigger: Push, pull request & merge to the main branch
 - CI: Runs unit tests automatically
-- CD:  
-  - If tests pass, it builds a Docker image and pushes it to Docker Hub  
-    https://hub.docker.com/r/hideto861/django-rest-framework  
-
-  - After the image is pushed, it is deployed to AWS ECS (Fargate) using AWS Copilot CLI  
-
-- Please see the below for more detail.<br>
+- CD: If tests pass, it builds a Docker image and then deploys it to AWS ECS (Fargate)  
+- For more details, please refer to the below.<br>
 https://github.com/HideTake761/CI-CD-Django-REST-API-with-Docker-on-AWS-ECS-Fargate/blob/main/.github/workflows/docker-build.yaml 
-
-
-
-
-
-
