@@ -5,18 +5,17 @@ Designed as a microservice, it can be scaled and deployed independently, minimi
 By developing with Docker and pushing the image to Docker Hub, any team member can verify the application in the same environment.
 
 Environment:
-- Host OS: Windows 11 Home 24H2  
-- Visual Studio Code  
-- Docker Desktop for Windows  
-- Docker Image: Python:3.13-slim linux/amd64  
-- Docker: version 28.3.2  
-- Python 3.9.16  
+- Host OS: Windows 11 Home 25H2  
+- Visual Studio Code 1.108.2  
+- Python 3.13.7  
 - Django 5.2.5, Django REST Framework 3.16.1, Django-filter 25.1  
 - json-log-formatter 1.1.1, coverage 7.10.6  
 **Django REST Framework** was chosen based on existing experience with **Django**, enabling quicker development and easier long-term maintenance compared to adopting a new framework like **FastAPI**.
-- SQLite, sqlparse 0.5.3  
-**SQLite** was selected because it is Django’s default RDBMS and easy to set up. More advanced RDBMSs such as **MySQL** or **PostgreSQL** were considered unnecessary due to the limited scale of the data handled in this project.
-- AWS Copilot CLI v1.34.1
+- WSGI + Gunicorn
+- PostgreSQL(Deploy), SQLite(Unit Test), sqlparse 0.5.3  
+**PostgreSQL** were considered
+- OIDC  
+- AWS CLI 2.30.6
 
 API server Functions:
 - records and stores product names(product) and prices(price)
@@ -36,22 +35,26 @@ Logging:
 
 <br>
 Unit Test: 
-https://github.com/HideTake761/CI-CD-Django-REST-API-with-Docker-on-AWS-ECS-Fargate/blob/main/myapi/tests.py
+https://github.com/HideTake761/CI-CD-Django-REST-API-with-Docker-on-AWS-ECS-Fargate/blob/main/myapi/tests.py  
   
 <br>
 <br>
-<br>
+  
+>aws ecs execute-command --cluster < cluster name> --task <task name> --container <container name> --interactive --command "python manage.py migrate"  
+
+<br>  
   
 AWS:  
-- This architecture was built using **AWS Copilot CLI**
+- This architecture was built using [**Terraform**](https://github.com/HideTake761/Terraform/tree/main/AWS_ECS_RDS)
 - Compute: ECS(Fargate)  
 **Fargate** was selected with future scalability in mind
 - Container Management: ECR
-- Networking: ALB(Application Load Balancer), VPC  
-**ALB** was adopted for load balancing. Due to constraints of the **Copilot CLI**, detailed **VPC** configurations rely on the default settings
+- Database: RDS PostgreSQL
+- Networking: ALB(Application Load Balancer), VPC, VPC Endpoint  
+**VPC Endpoints** were chosen instead of a NAT Gateway to avoid unnecessary internet traffic.
 - Monitoring & Logging: CloudWatch Logs, Alarm
-- IaC: CloudFormation  
-Revise **CloudFormation Templates** created by **Copilot** and re-deploy them. Manage **infrastructure as code** 
+- IaC: Terraform
+- Cost Management: AWS Budgets
 - System Architecture Diagram is below  
   <img src="./AWS ECS RDS.jpg" alt="System Architecture Diagram" width="600" />
 
@@ -68,3 +71,4 @@ CI/CD Pipeline (via GitHub Actions):
 - CD: If tests pass, it builds a Docker image and then deploys it to AWS ECS (Fargate)  
 - For more details, please refer to the below.<br>
 https://github.com/HideTake761/CI-CD-Django-REST-API-with-Docker-on-AWS-ECS-Fargate/blob/main/.github/workflows/docker-build.yaml 
+
