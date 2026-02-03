@@ -17,7 +17,7 @@ This application provides only REST APIs and does not require WebSocket support 
 - Utilities: sqlparse 0.5.3  
 The project initially used **SQLite**. However, when considering horizontal scaling on ECS, it became clear that write operations from multiple containers would trigger database locks, which is a critical limitation for a scalable architecture. To avoid this issue, the database was migrated to **Amazon RDS**.
 **PostgreSQL** was chosen because Django provides first class support and optimizations for it by default.
-- OIDC  
+- GitHub Actions currently authenticates to AWS using IAM user access keys. Migrating to **OIDC**‑based authentication is planned as a future improvement.  
 - AWS CLI 2.30.6
 
 API server Functions:
@@ -79,6 +79,7 @@ CI/CD Pipeline (via GitHub Actions):
 - CD: If tests pass, it builds a Docker image and then deploys it to AWS ECS (Fargate)  
 - For more details, please refer to the below.<br>
 https://github.com/HideTake761/CI-CD-Django-REST-API-with-Docker-on-AWS-ECS-Fargate/blob/main/.github/workflows/docker-build.yaml 
+
 
 
 
