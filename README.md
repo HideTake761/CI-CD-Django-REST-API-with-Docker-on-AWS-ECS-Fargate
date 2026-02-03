@@ -55,37 +55,11 @@ Revise **CloudFormation Templates** created by **Copilot** and re-deploy them. M
 - System Architecture Diagram is below  
   <img src="./AWS ECS RDS.jpg" alt="System Architecture Diagram" width="600" />
 
-[This project](https://github.com/HideTake761/Terraform/tree/main/AWS_ECS) adds **AWS Budgets** to this project's infrastructure and provisions it with **Terraform**.  
-
+**AWS infrastructure** is managed in a separate **Terraform** repository:
+[Terraform/AWS_ECS_RDS](https://github.com/HideTake761/Terraform/tree/main/AWS_ECS_RDS)
   
-<br>
-CloudFormation:  
-- Deployment Order of CloudFormation Templates Created by Copilot:  
-
- 1. Stack name: `<application-name>-infrastructure-roles`  
-Includes IAM roles such as Lambda execution roles and EC2 instance profiles.  
-Requires `CAPABILITY_NAMED_IAM`.
-
- 2. Stack name: `<service-name>-<env-name>`  
-Includes VPC, Subnets, route tables, and security groups.  
-Requires `CAPABILITY_NAMED_IAM`.
-
- 3. Stack name: `StackSet-< application -name>-infrastructure`  
-Includes S3, DynamoDB, ECR, SQS, and SNS.  
-
- 4. Stack name: `<application-name>-<env-name>-<service-name>`  
-Includes Lambda functions, S3, ECS, EC2, API Gateway, and ELB/ALB/NLB.  
-Requires `CAPABILITY_IAM` and `CAPABILITY_AUTO_EXPAND`.
-
- 5. Stack name: `<application-name>-<env-name>-<service-name>-AddonsStack`  
-Includes CloudWatch dashboards, alarms, log groups, and SNS StackSets.  
-
-- Handling `CREATE_FAILED` and `DELETE_FAILED` Issues:  
-If a stack enters the `DELETE_FAILED` state due to a specific resource such as `DelegateDNSAction` or `HTTPSCert`, especially when the resource failed during creation and does not actually exist, you can successfully delete the stack using the following command.
-> aws cloudformation delete-stack --stack-name \<your-stack-name> --retain-resources <problematic resource logical ID, e.g. `DelegateDNSAction`, `HTTPSCert`> --region \<your-region>
-
-<br>
-
+<br>  
+  
 CI/CD Pipeline (via GitHub Actions):  
 **GitHub Actions** was selected due to deep integration with the GitHub ecosystem. It can be configured through the GitHub UI and a YAML file which makes it much simpler to implement than alternatives like **Jenkins** or **CircleCI**.
 - Trigger: Push, pull request & merge to the main branch
@@ -98,6 +72,7 @@ CI/CD Pipeline (via GitHub Actions):
 
 - Please see the below for more detail.<br>
 https://github.com/HideTake761/CI-CD-Django-REST-API-with-Docker-on-AWS-ECS-Fargate/blob/main/.github/workflows/docker-build.yaml 
+
 
 
 
