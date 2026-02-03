@@ -11,8 +11,10 @@ Environment:
 - Django 5.2.5, Django REST Framework 3.16.1, Django-filter 25.1  
 - json-log-formatter 1.1.1, coverage 7.10.6  
 **Django REST Framework** was chosen based on existing experience with **Django**, enabling quicker development and easier long-term maintenance compared to adopting a new framework like **FastAPI**.
-- WSGI + Gunicorn
-- PostgreSQL(Deploy), SQLite(Unit Test), sqlparse 0.5.3  
+- Web Server: WSGI + Gunicorn  
+今回は
+- Database: PostgreSQL(deploy), SQLite(tests)  
+- Utilities: sqlparse 0.5.3  
 **PostgreSQL** were considered
 - OIDC  
 - AWS CLI 2.30.6
@@ -35,10 +37,12 @@ Logging:
 
 <br>
 Unit Test: 
-https://github.com/HideTake761/CI-CD-Django-REST-API-with-Docker-on-AWS-ECS-Fargate/blob/main/myapi/tests.py  
+https://github.com/HideTake761/CI-CD-Django-REST-API-with-Docker-on-AWS-ECS-Fargate/blob/main/myapi/tests.py
+<br>
+<br>
   
-<br>
-<br>
+動作確認  
+  
   
 >aws ecs execute-command --cluster < cluster name> --task <task name> --container <container name> --interactive --command "python manage.py migrate"  
 
@@ -71,4 +75,5 @@ CI/CD Pipeline (via GitHub Actions):
 - CD: If tests pass, it builds a Docker image and then deploys it to AWS ECS (Fargate)  
 - For more details, please refer to the below.<br>
 https://github.com/HideTake761/CI-CD-Django-REST-API-with-Docker-on-AWS-ECS-Fargate/blob/main/.github/workflows/docker-build.yaml 
+
 
